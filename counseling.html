@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گوش شنوا و مشاور هوشمند | حالِ خوب من</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7; --secondary: #00CEC9; --accent: #FD79A8;
+            --bg: linear-gradient(135deg, #1e1b4b 0%, #311b92 50%, #4a148c 100%);
+            --glass: rgba(20, 15, 45, 0.7); --border: rgba(255, 255, 255, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background: var(--bg); background-attachment: fixed; min-height: 100vh; color: #fff; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        nav { max-width: 1200px; margin: 10px auto 35px auto; background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; padding: 14px 25px; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+        .logo i { color: var(--secondary); }
+        .nav-links { display: flex; list-style: none; gap: 8px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #f1f2f6; font-weight: 500; padding: 9px 15px; border-radius: 12px; transition: 0.3s; font-size: 0.92rem; display: flex; align-items: center; gap: 7px; }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+
+        .container { max-width: 900px; margin: 0 auto; width: 100%; }
+        .glass-box { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 25px; padding: 35px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        h2 { font-size: 1.5rem; margin-bottom: 15px; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        p { line-height: 1.8; opacity: 0.95; font-size: 1rem; margin-bottom: 15px; text-align: justify; }
+
+        .form-group { text-align: right; margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
+        textarea, input { width: 100%; padding: 12px; border-radius: 12px; border: none; outline: none; background: rgba(255,255,255,0.9); color: #333; font-size: 0.95rem; }
+        textarea { resize: vertical; height: 110px; }
+        
+        .btn { background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem; width: 100%; transition: 0.3s; }
+        .chatbot-iframe { width: 100%; height: 520px; border: none; border-radius: 20px; background: rgba(0,0,0,0.2); }
+        
+        footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid var(--border); margin-top: 40px; font-size: 0.95rem; color: #ddd; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-heart-pulse"></i><span>حالِ خوب من</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> خانه</a></li>
+            <li><a href="counseling.html" style="background: rgba(255,255,255,0.2);"><i class="fa-solid fa-ear-listen"></i> گوش شنوا</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-palette"></i> گالری آثار</a></li>
+            <li><a href="mood.html"><i class="fa-solid fa-smile"></i> حالت چطوره؟</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-lightbulb"></i> سازنده</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="glass-box">
+            <h2><i class="fa-solid fa-robot"></i> مشاور و گوش شنوای هوشمند</h2>
+            <div style="background: rgba(253, 121, 168, 0.15); border: 1px dashed var(--accent); padding: 12px 15px; border-radius: 12px; margin-bottom: 20px; font-size: 0.92rem; text-align: right;">
+                <i class="fa-solid fa-triangle-exclamation" style="color: var(--accent);"></i> 
+                <strong>توجه:</strong> هوش مصنوعی هیچ موقع احساسات واقعی و قلبی برای درک انها ندارد اما اگه لازم به یک گوش شنوا داری این هست.
+            </div>
+            
+            <iframe class="chatbot-iframe" src="https://cdn.botpress.cloud/webchat/v5.0/shareable.html?configUrl=https://files.bpcontent.cloud/2026/10/13/17/20261013174605-7T7LF7F3.json"></iframe>
+        </div>
+
+        <div class="glass-box">
+            <h2><i class="fa-solid fa-user-secret"></i> صندوق پیام ناشناس به مشاوران سامانه</h2>
+            <p>پیام شما به صورت محرمانه در سامانه ثبت می‌شود تا مشاوران حاضر در سایت پاسخ آن را ارسال کنند.</p>
+            <form id="msg-form" onsubmit="sendAnonymousMessage(event)">
+                <div class="form-group">
+                    <label>نام مدرسه شما:</label>
+                    <input type="text" id="target-school" required placeholder="مثال: فرزانگان ۱">
+                </div>
+                <div class="form-group">
+                    <label>متن پیام محرمانه:</label>
+                    <textarea id="msg-content" required placeholder="حرف‌هایت را اینجا بنویس..."></textarea>
+                </div>
+                <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> ارسال محرمانه پیام</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        طراحی و توسعه‌یافته با 🤍 توسط <strong>پریناز نادری</strong> | ویژه جشنواره سلامت روان
+    </footer>
+
+    <script>
+        function sendAnonymousMessage(e) {
+            e.preventDefault();
+            const currentUser = JSON.parse(localStorage.getItem('current_user'));
+            if(!currentUser) {
+                alert('لطفاً ابتدا از طریق بخش ثبت‌نام/ورود وارد حساب خود شوید.');
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const messages = JSON.parse(localStorage.getItem('app_messages') || '[]');
+            const newMessage = {
+                id: Date.now(),
+                senderName: currentUser.fullname,
+                school: document.getElementById('target-school').value.trim(),
+                content: document.getElementById('msg-content').value,
+                reply: "هنوز پاسخی داده نشده است."
+            };
+
+            messages.push(newMessage);
+            localStorage.setItem('app_messages', JSON.stringify(messages));
+            alert('✨ پیام محرمانه شما با موفقیت ثبت شد و در اختیار مشاوران سایت قرار گرفت!');
+            document.getElementById('msg-form').reset();
+        }
+    </script>
+</body>
+</html>

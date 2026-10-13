@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حالت چطوره؟ | سنجش خلق‌وخو و حال خوب</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7; --secondary: #00CEC9; --accent: #FD79A8;
+            --bg: linear-gradient(135deg, #1e1b4b 0%, #311b92 50%, #4a148c 100%);
+            --glass: rgba(20, 15, 45, 0.7); --border: rgba(255, 255, 255, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background: var(--bg); background-attachment: fixed; min-height: 100vh; color: #fff; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        nav { max-width: 1200px; margin: 10px auto 35px auto; background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; padding: 14px 25px; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+        .logo i { color: var(--secondary); }
+        .nav-links { display: flex; list-style: none; gap: 8px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #f1f2f6; font-weight: 500; padding: 9px 15px; border-radius: 12px; transition: 0.3s; font-size: 0.92rem; display: flex; align-items: center; gap: 7px; }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+
+        .container { max-width: 850px; margin: 0 auto; text-align: center; width: 100%; }
+        .glass-box { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 25px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        h1 { font-size: 2rem; margin-bottom: 10px; color: #fff; }
+        p { line-height: 1.8; opacity: 0.95; font-size: 1.05rem; margin-bottom: 20px; }
+
+        .mood-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 25px 0; }
+        .mood-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--border); border-radius: 18px; padding: 20px 10px; cursor: pointer; color: white; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: bold; }
+        .mood-btn:hover { transform: translateY(-5px); background: rgba(255,255,255,0.25); border-color: var(--secondary); }
+        .mood-btn i { font-size: 2.5rem; }
+
+        .result-box { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 25px; margin-top: 25px; border: 1px solid var(--border); text-align: right; display: none; }
+        .result-box h3 { color: var(--secondary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        
+        footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid var(--border); margin-top: 40px; font-size: 0.95rem; color: #ddd; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-heart-pulse"></i><span>حالِ خوب من</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> خانه</a></li>
+            <li><a href="counseling.html"><i class="fa-solid fa-ear-listen"></i> گوش شنوا</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-palette"></i> گالری آثار</a></li>
+            <li><a href="mood.html" style="background: rgba(255,255,255,0.2);"><i class="fa-solid fa-smile"></i> حالت چطوره؟</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-lightbulb"></i> سازنده</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="glass-box">
+            <h1><i class="fa-solid fa-face-smile-beam" style="color: var(--secondary);"></i> امروز حس و حالِ تو چطور است؟</h1>
+            <p>احساسات تو بسیار ارزشمند هستند. روی وضعیت کنونی خود کلیک کن تا توصیه روان‌شناختی مناسب را دریافت کنی.</p>
+            
+            <div class="mood-grid">
+                <button class="mood-btn" onclick="showAdvice('happy')">
+                    <i class="fa-solid fa-face-grin-stars" style="color: #f1c40f;"></i>
+                    <span>عالی و پرانرژی 🌟✨</span>
+                </button>
+                <button class="mood-btn" onclick="showAdvice('stressed')">
+                    <i class="fa-solid fa-face-dizzy" style="color: #e74c3c;"></i>
+                    <span>مضطرب یا استرس‌دار 😰</span>
+                </button>
+                <button class="mood-btn" onclick="showAdvice('tired')">
+                    <i class="fa-solid fa-face-tired" style="color: #f39c12;"></i>
+                    <span>خسته یا بی‌حوصله 🥱</span>
+                </button>
+                <button class="mood-btn" onclick="showAdvice('sad')">
+                    <i class="fa-solid fa-face-frown" style="color: #3498db;"></i>
+                    <span>دل‌تنگ یا غمگین 🥺</span>
+                </button>
+            </div>
+
+            <div id="resultBox" class="result-box">
+                <h3 id="adviceTitle"></h3>
+                <p id="adviceText" style="margin-bottom: 10px;"></p>
+                <div id="adviceAction" style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px; font-size: 0.95rem; color: var(--accent);"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        طراحی و توسعه‌یافته با 🤍 توسط <strong>پریناز نادری</strong> | ویژه جشنواره سلامت روان
+    </footer>
+
+    <script>
+        function showAdvice(mood) {
+            const box = document.getElementById('resultBox');
+            const title = document.getElementById('adviceTitle');
+            const text = document.getElementById('adviceText');
+            const action = document.getElementById('adviceAction');
+            box.style.display = 'block';
+
+            if(mood === 'happy') {
+                title.innerHTML = '<i class="fa-solid fa-star"></i> انرژی مثبت و فوق‌العاده! 🤩';
+                text.innerText = 'داشتن حالِ خوب هدیه‌ای ارزشمند است. از این حس عالی استفاده کن و انرژی مثبتت را با لبخند به دیگران هم هدیه بده.';
+                action.innerHTML = '💡 <strong>پیشنهاد امروز:</strong> یک اثر جدید خلق کن و در گالری آپلود کن تا بقیه هم انرژی بگیرند!';
+            } else if(mood === 'stressed') {
+                title.innerHTML = '<i class="fa-solid fa-wind"></i> راهکار فوری برای آرامش 🌿';
+                text.innerText = 'استرس نشان می‌دهد به موضوعی اهمیت می‌دهی، اما نباید آرامشت را خراب کند. شانه هایت را رها کن و سه نفس عمیق بکش.';
+                action.innerHTML = '🌿 <strong>تمرین تنفس:</strong> ۴ ثانیه دم، ۴ ثانیه مکث، ۴ ثانیه بازدم. هم‌اکنون ۳ بار تکرار کن.';
+            } else if(mood === 'tired') {
+                title.innerHTML = '<i class="fa-solid fa-mug-hot"></i> زمان بازسازی انرژی ☕';
+                text.innerText = 'مغز تو ماشین نیست! استراحت کردن نشانه ضعف نیست بلکه شرط ادامه مسیر است.';
+                action.innerHTML = '☕ <strong>پیشنهاد:</strong> ۱۰ دقیقه گوشی را کنار بگذار، آب خنک بنوش و چشم‌هایت را ببند.';
+            } else if(mood === 'sad') {
+                title.innerHTML = '<i class="fa-solid fa-heart"></i> درک متقابل و همدلی 🌸';
+                text.innerText = 'گاهی احساس دل‌تنگی سراغ انسان می‌آید و این کاملاً طبیعی است. لازم نیست همیشه قوی باشی.';
+                action.innerHTML = '🌸 <strong>پیشنهاد:</strong> از طریق بخش «گوش شنوا» دغدغه‌ات را بنویس یا با یک دوست صحبت کن.';
+            }
+        }
+    </script>
+</body>
+</html>

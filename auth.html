@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احراز هویت و پنل مدیریت کاربران | حالِ خوب من</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7; --secondary: #00CEC9; --accent: #FD79A8;
+            --bg: linear-gradient(135deg, #1e1b4b 0%, #311b92 50%, #4a148c 100%);
+            --glass: rgba(20, 15, 45, 0.7); --border: rgba(255, 255, 255, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background: var(--bg); background-attachment: fixed; min-height: 100vh; color: #fff; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .back-btn { position: absolute; top: 20px; right: 20px; text-decoration: none; color: white; background: var(--glass); backdrop-filter: blur(10px); padding: 10px 18px; border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+        
+        .container { max-width: 900px; margin: 60px auto 0 auto; width: 100%; }
+        .glass-box { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 25px; padding: 35px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        
+        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 12px; border: none; background: rgba(0,0,0,0.3); color: white; border-radius: 12px; font-size: 1rem; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { background: var(--primary); }
+
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; text-align: right; }
+        .form-group { text-align: right; margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.88rem; font-weight: bold; }
+        
+        input, select { width: 100%; padding: 11px; border-radius: 10px; border: none; outline: none; background: rgba(255,255,255,0.9); color: #333; font-size: 0.95rem; }
+        
+        .btn { background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem; width: 100%; transition: 0.3s; margin-top: 15px; }
+        .btn-danger { background: #e74c3c; }
+        
+        .card-box { background: rgba(0,0,0,0.25); padding: 15px; border-radius: 15px; margin-top: 12px; border: 1px solid var(--border); text-align: right; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: right; }
+        th, td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        th { color: var(--secondary); }
+
+        footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid var(--border); margin-top: 40px; font-size: 0.95rem; color: #ddd; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> بازگشت به خانه</a>
+
+    <div class="container">
+        <!-- فرم احراز هویت -->
+        <div id="auth-section" class="glass-box">
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="tab-register-btn" onclick="switchTab('register')">ثبت‌نام حساب جدید</button>
+                <button class="tab-btn" id="tab-login-btn" onclick="switchTab('login')">ورود به حساب</button>
+            </div>
+
+            <form id="register-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>نقش کاربر:</label>
+                    <select id="reg-role" required>
+                        <option value="دانش‌آموز">🎓 دانش‌آموز</option>
+                        <option value="مشاور مدرسه">👨‍🏫 مشاور مدرسه</option>
+                        <option value="مدیر مدرسه">🏫 مدیر مدرسه</option>
+                    </select>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group"><label>نام‌کاربری:</label><input type="text" id="reg-username" required placeholder="username"></div>
+                    <div class="form-group"><label>رمز عبور:</label><input type="password" id="reg-password" required placeholder="******"></div>
+                    <div class="form-group"><label>نام و نام خانوادگی:</label><input type="text" id="reg-fullname" required placeholder="نام کامل"></div>
+                    <div class="form-group"><label>نام مدرسه:</label><input type="text" id="reg-school" required placeholder="نام مدرسه"></div>
+                </div>
+                <button type="submit" class="btn">ثبت‌نام نهایی و ساخت حساب</button>
+            </form>
+
+            <form id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                <div class="form-group"><label>نام‌کاربری:</label><input type="text" id="login-username" required></div>
+                <div class="form-group"><label>رمز عبور:</label><input type="password" id="login-password" required></div>
+                <button type="submit" class="btn">ورود به سامانه</button>
+            </form>
+        </div>
+
+        <!-- پنل کاربری -->
+        <div id="dashboard-section" class="glass-box" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2><i class="fa-solid fa-user-shield"></i> پنل کاربری و مدیریت سامانه</h2>
+                <button class="btn btn-danger" style="width: auto; padding: 8px 15px; margin: 0;" onclick="handleLogout()">خروج</button>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.2); padding: 18px; border-radius: 15px; margin-bottom: 20px; text-align: right;">
+                <p><strong>کاربر:</strong> <span id="dash-fullname"></span></p>
+                <p><strong>نقش:</strong> <span id="dash-role" style="color: var(--secondary);"></span></p>
+                <p><strong>مدرسه:</strong> <span id="dash-school"></span></p>
+            </div>
+
+            <!-- پاسخگویی مشاور به تمام پیام‌های محرمانه -->
+            <div id="counselor-panel" style="display: none; text-align: right; margin-bottom: 25px;">
+                <h3><i class="fa-solid fa-comments"></i> پاسخگویی به پیام‌های ناشناس دانش‌آموزان</h3>
+                <div id="counselor-msgs-list"></div>
+            </div>
+
+            <!-- جدول لیست افراد احراز هویت شده -->
+            <div id="users-panel" style="display: none; text-align: right;">
+                <h3><i class="fa-solid fa-users"></i> لیست کاربران ثبت‌نام‌شده در سامانه</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>نام کامل</th>
+                            <th>نقش</th>
+                            <th>مدرسه</th>
+                            <th>نام کاربری</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        طراحی و توسعه‌یافته با 🤍 توسط <strong>پریناز نادری</strong> | ویژه جشنواره سلامت روان
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            document.getElementById('tab-register-btn').classList.toggle('active', tab === 'register');
+            document.getElementById('tab-login-btn').classList.toggle('active', tab === 'login');
+            document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+            document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const users = JSON.parse(localStorage.getItem('app_users') || '[]');
+            const username = document.getElementById('reg-username').value.trim();
+            if (users.find(u => u.username === username)) {
+                alert('این نام‌کاربری قبلاً ثبت شده است.');
+                return;
+            }
+            const newUser = {
+                role: document.getElementById('reg-role').value,
+                username: username,
+                password: document.getElementById('reg-password').value,
+                fullname: document.getElementById('reg-fullname').value,
+                school: document.getElementById('reg-school').value.trim()
+            };
+            users.push(newUser);
+            localStorage.setItem('app_users', JSON.stringify(users));
+            localStorage.setItem('current_user', JSON.stringify(newUser));
+            alert('✨ ثبت‌نام با موفقیت انجام شد!');
+            checkAuthState();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const users = JSON.parse(localStorage.getItem('app_users') || '[]');
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value;
+            const found = users.find(x => x.username === u && x.password === p);
+            if (found) {
+                localStorage.setItem('current_user', JSON.stringify(found));
+                alert('✨ خوش آمدید!');
+                checkAuthState();
+            } else {
+                alert('نام‌کاربری یا رمز عبور اشتباه است.');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('current_user');
+            checkAuthState();
+        }
+
+        function checkAuthState() {
+            const currentUser = JSON.parse(localStorage.getItem('current_user'));
+            if (currentUser) {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('dashboard-section').style.display = 'block';
+                document.getElementById('dash-fullname').innerText = currentUser.fullname;
+                document.getElementById('dash-role').innerText = currentUser.role;
+                document.getElementById('dash-school').innerText = currentUser.school;
+
+                if (currentUser.role === 'مشاور مدرسه' || currentUser.role === 'مدیر مدرسه') {
+                    document.getElementById('users-panel').style.display = 'block';
+                    loadAllUsers();
+                }
+
+                if (currentUser.role === 'مشاور مدرسه') {
+                    document.getElementById('counselor-panel').style.display = 'block';
+                    loadCounselorMessages();
+                }
+            } else {
+                document.getElementById('auth-section').style.display = 'block';
+                document.getElementById('dashboard-section').style.display = 'none';
+            }
+        }
+
+        function loadAllUsers() {
+            const body = document.getElementById('users-table-body');
+            const users = JSON.parse(localStorage.getItem('app_users') || '[]');
+            body.innerHTML = '';
+            users.forEach(u => {
+                body.innerHTML += `
+                    <tr>
+                        <td>${u.fullname}</td>
+                        <td>${u.role}</td>
+                        <td>${u.school}</td>
+                        <td>${u.username}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function loadCounselorMessages() {
+            const list = document.getElementById('counselor-msgs-list');
+            const msgs = JSON.parse(localStorage.getItem('app_messages') || '[]');
+            list.innerHTML = '';
+
+            if (msgs.length === 0) {
+                list.innerHTML = '<p style="opacity:0.8; margin-top:10px;">پیام محرمانه‌ای ثبت نشده است.</p>';
+                return;
+            }
+
+            msgs.forEach(m => {
+                list.innerHTML += `
+                    <div class="card-box">
+                        <p><strong>مدرسه:</strong> ${m.school}</p>
+                        <p style="margin: 5px 0;"><strong>پیام:</strong> ${m.content}</p>
+                        <p style="color:var(--secondary); font-size:0.9rem;"><strong>پاسخ ثبت‌شده:</strong> ${m.reply}</p>
+                        <div style="margin-top: 10px; display: flex; gap: 10px;">
+                            <input type="text" id="reply-input-${m.id}" placeholder="نوشتن پاسخ مشاور..." style="padding: 8px;">
+                            <button class="btn" style="width: auto; margin:0; padding: 8px 15px;" onclick="replyToMsg(${m.id})">ارسال پاسخ</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function replyToMsg(id) {
+            const text = document.getElementById(`reply-input-${id}`).value.trim();
+            if (!text) return;
+            let msgs = JSON.parse(localStorage.getItem('app_messages') || '[]');
+            msgs = msgs.map(m => {
+                if (m.id === id) m.reply = text;
+                return m;
+            });
+            localStorage.setItem('app_messages', JSON.stringify(msgs));
+            alert('✨ پاسخ شما ارسال شد.');
+            loadCounselorMessages();
+        }
+
+        window.onload = checkAuthState;
+    </script>
+</body>
+</html>
